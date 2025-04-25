@@ -1,0 +1,19 @@
+@use "@styles/variables" as *;
+
+@mixin clear-button() {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: $font;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

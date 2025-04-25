@@ -1,0 +1,89 @@
+@use "@styles/variables" as *;
+
+.input-ui {
+  &-container {
+    width: 316px;
+    font-family: $font;
+
+    &.disabled {
+      .input-ui-field {
+        border-color: $border-color-grey;
+        cursor: not-allowed;
+        color: $color-grey;
+      }
+    }
+
+    &.error {
+      .input-ui-field {
+        border: 1px solid $color-danger;
+        color: $color-black;
+
+        &::placeholder {
+          color: $color-black;
+        }
+      }
+
+      .input-ui-description {
+        color: $color-danger;
+      }
+    }
+  }
+
+  &-label {
+    display: block;
+    margin-bottom: 8px;
+    color: $color-black;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  &-description {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    color: $color-black;
+
+    .error & {
+      color: $color-danger;
+    }
+  }
+
+  &-field {
+    width: 100%;
+    padding: 14px 12px;
+    height: 49px;
+    background-color: $bg-white;
+    border: 1.5px solid $border-color-grey;
+    border-radius: $border-radius;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: $color-grey;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    font-family: inherit;
+    margin: 0;
+
+    &:focus {
+      outline: $color-black;
+      color: $color-black;
+    }
+
+    &:not(:placeholder-shown) {
+      color: $color-black;
+      border-color: $border-color-black;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: $color-grey;
+      font-weight: 400;
+      font-size: 16px;
+      opacity: 1;
+    }
+  }
+}

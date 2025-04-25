@@ -1,0 +1,249 @@
+@use "@styles/variables" as *;
+
+.input-ui {
+  &-container {
+    width: 316px;
+    font-family: $font;
+    position: relative;
+
+    &.disabled {
+      .input-ui-field {
+        border-color: $border-color-grey;
+        cursor: not-allowed;
+        color: $color-grey;
+      }
+    }
+
+    &.error {
+      .input-ui-field {
+        border: 1px solid $color-danger;
+        color: $color-black;
+
+        &::placeholder {
+          color: $color-black;
+        }
+      }
+
+      .input-ui-description {
+        color: $color-danger;
+      }
+    }
+  }
+
+  &-label {
+    display: block;
+    margin-bottom: 8px;
+    color: $color-black;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  &-description {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    color: $color-black;
+
+    .error & {
+      color: $color-danger;
+    }
+  }
+
+  &-field-wrapper {
+    position: relative;
+  }
+
+  &-field {
+    width: 100%;
+    padding: 14px 12px;
+    height: 49px;
+    background-color: $bg-white;
+    border: 1.5px solid $border-color-grey;
+    border-radius: $border-radius;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: $color-grey;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    font-family: inherit;
+    margin: 0;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      color: $color-black;
+      border-color: $border-color-black;
+    }
+
+    &:not(:placeholder-shown) {
+      color: $color-black;
+      border-color: $border-color-black;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: $color-grey;
+      font-weight: 400;
+      font-size: 16px;
+      opacity: 1;
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    right: 12px;
+    top: 15px;
+    pointer-events: none;
+  }
+}
+
+.calendar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 100%;
+  margin-top: 8px;
+  z-index: 10;
+  background: $bg-white;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-calendar {
+  background-color: $bg-white;
+  border: 1px solid $border-color-grey;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 100%;
+
+  .react-datepicker__day-name:nth-child(6),
+  .react-datepicker__day-name:nth-child(7) {
+    color: $color-calendar;
+  }
+
+  .react-datepicker {
+    &__header {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+    }
+
+    &__day-names {
+      display: flex;
+      justify-content: space-between;
+      margin: 9px 0;
+      border-bottom: 1px solid $border-color-grey;
+    }
+
+    &__day-name {
+      width: 40px;
+      height: 40px;
+
+      color: $color-black;
+      font-weight: 600;
+      font-size: 18px;
+
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    &__month {
+      margin: 0;
+    }
+
+    &__week {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__day {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      border-radius: 4px;
+
+      color: $color-black;
+      font-weight: 500;
+      font-size: 18px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: $bg-calendar;
+        color: $color-black;
+      }
+
+      &--selected {
+        background-color: $color-primary;
+        color: $color-white;
+      }
+
+      &--outside-month {
+        color: $color-grey;
+        opacity: 0.3;
+      }
+
+      &--disabled {
+        color: $color-grey;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .calendar-month-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+
+  .calendar-month-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: $color-black;
+    text-transform: capitalize;
+  }
+
+  .calendar-nav-button {
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.2s ease;
+
+    &:hover:not(:disabled) {
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .weekend {
+    color: $color-calendar;
+  }
+}

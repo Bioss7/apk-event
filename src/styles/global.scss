@@ -1,0 +1,189 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Regular.woff2") format("woff2"),
+    url("../assets/fonts/Montserrat-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Medium.woff2") format("woff2"),
+    url("../assets/fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-SemiBold.woff2") format("woff2"),
+    url("../assets/fonts/Montserrat-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Bold.woff2") format("woff2"),
+    url("../assets/fonts/Montserrat-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  font-family: $font;
+  color: $color-primary;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #f4f5f6;
+  touch-action: none;
+}
+
+#root {
+  height: 100%;
+}
+
+html::-webkit-scrollbar {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #cccccc;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #8f8f8f;
+}
+
+body.no-scroll {
+  overflow: hidden !important;
+  padding-right: 16px;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+img {
+  vertical-align: middle;
+  border-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+a:hover {
+  color: inherit;
+}
+
+%base-text {
+  font-family: $font;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+}
+
+.text-32-bold {
+  @extend %base-text;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 110%;
+}
+
+.text-24-bold {
+  @extend %base-text;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.text-18-semibold {
+  @extend %base-text;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.text-18-medium {
+  @extend %base-text;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+.text-16-semibold {
+  @extend %base-text;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.text-16-regular {
+  @extend %base-text;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 130%;
+}
+
+.text-14-regular {
+  @extend %base-text;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 130%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.flex-d-col {
+  flex-direction: column;
+  gap: 5px;
+}
+
+.col-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

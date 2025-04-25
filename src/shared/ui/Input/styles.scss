@@ -1,0 +1,63 @@
+@use "@styles/variables" as *;
+
+.input-ui {
+  &-field-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  &-password-toggle {
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &-field {
+    width: 100%;
+    padding: 14px 12px;
+    height: 49px;
+    background-color: $bg-white;
+    border: 1.5px solid $border-color-grey;
+    border-radius: $border-radius;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    color: $color-grey;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    font-family: inherit;
+    margin: 0;
+
+    &:focus {
+      outline: $color-black;
+      color: $color-black;
+    }
+
+    &:not(:placeholder-shown) {
+      color: $color-black;
+      border-color: $border-color-black;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: $color-grey;
+      font-weight: 400;
+      font-size: 16px;
+      opacity: 1;
+    }
+  }
+}

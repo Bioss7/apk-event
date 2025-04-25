@@ -1,0 +1,110 @@
+@use "@styles/variables" as *;
+@use "@styles/mixins" as *;
+
+.button {
+  @include clear-button();
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 26px;
+  border-radius: 8px;
+
+  width: 316px;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 18px;
+
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+
+  &-icon {
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      transition: color 0.3s ease;
+    }
+
+    &.left {
+      margin-right: 8px;
+    }
+
+    &.right {
+      margin-left: 8px;
+    }
+  }
+
+  &-text {
+    white-space: nowrap;
+  }
+
+  &.icon-only {
+    width: auto;
+    padding: 12px;
+
+    .button-icon {
+      margin: 0;
+    }
+  }
+
+  &-primary {
+    color: $color-white;
+    background-color: $bg-primary;
+
+    &:focus,
+    &:active,
+    &:hover {
+      background-color: $bg-primary-hover;
+    }
+  }
+
+  &-secondary {
+    color: $color-black;
+    background-color: $color-secondary;
+    border: 1px solid $color-primary;
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: $color-white;
+      background-color: $bg-secondary-hover;
+
+      .button-icon svg {
+        color: $color-white;
+      }
+    }
+  }
+
+  &-small {
+    color: $color-black;
+    font-weight: 400;
+    font-size: 16px;
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: $color-white;
+      background-color: $bg-primary-hover;
+
+      .button-icon svg {
+        color: $color-white;
+      }
+    }
+  }
+
+  &:disabled {
+    color: $color-white;
+    background-color: $bg-grey;
+    border: 1px solid $border-color-grey;
+    cursor: not-allowed;
+
+    &:focus,
+    &:active,
+    &:hover {
+      background-color: $bg-grey;
+      border: 1px solid $border-color-grey;
+    }
+  }
+}

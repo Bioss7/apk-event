@@ -1,0 +1,54 @@
+// Typography
+$fontName: "Montserrat";
+$font: $fontName, Helvetica, Arial, sans-serif, -apple-system;
+$font-size-button: 18px;
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-title: 20px;
+
+// Colors
+$color-primary: #f39100;
+$color-primary-hover: #ffa514;
+$color-secondary: #ffffff;
+$color-secondary-hover: #f39100;
+$color-calendar: #af0909;
+
+// Neutral colors
+$color-white: #ffffff;
+$color-black: #333333;
+$color-grey: #cccccc;
+$color-danger: #eb5757;
+$color-success: #27ae60;
+
+// background-color
+$bg-primary: $color-primary;
+$bg-primary-hover: #ffa514;
+$bg-secondary-hover: #f39100;
+$bg-white: $color-white;
+$bg-black: $color-black;
+$bg-grey: $color-grey;
+$bg-calendar: #f1f1f1;
+
+// Borders
+$border-radius: 8px;
+$border-color-white: $color-white;
+$border-color-black: $color-black;
+$border-color-grey: $color-grey;
+$border-color-error: $color-danger;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+// Элементы управления (UI component helpers)
+$z-index-dropdown: 101;
+$input-border-color: #bdbdbd;
+$table-header-bg: #fafafa;
+$table-row-hover: #f2f2f2;
+
+$shadow-popup: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-button: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+$select-arrow-border-width: 2px;

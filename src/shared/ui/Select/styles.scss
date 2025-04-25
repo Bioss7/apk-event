@@ -1,0 +1,175 @@
+@use "@styles/variables" as *;
+
+.select-ui {
+  &-container {
+    width: 316px;
+    font-family: $font;
+    position: relative;
+
+    &.disabled {
+      pointer-events: none;
+
+      .select-ui-input {
+        background-color: $bg-grey;
+        border-color: $border-color-grey;
+        color: $color-white;
+        cursor: not-allowed;
+
+        &::after {
+          border-top-color: $border-color-white;
+          border-right-color: $border-color-white;
+        }
+      }
+    }
+
+    &.error {
+      .select-ui-input {
+        border: 1px solid $color-danger;
+        color: $color-black;
+
+        &::after {
+          border-top: $select-arrow-border-width solid $border-color-black;
+          border-right: $select-arrow-border-width solid $border-color-black;
+        }
+
+        &::placeholder {
+          color: $color-black;
+        }
+      }
+
+      .select-ui-description {
+        font-weight: 400;
+        font-size: 14px;
+        color: $color-danger;
+      }
+    }
+  }
+
+  &-label {
+    display: block;
+    margin-bottom: 8px;
+    color: $color-black;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  &-description {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: $color-black;
+  }
+
+  &-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 12px;
+    height: 49px;
+    background-color: $bg-white;
+    border: 1.5px solid $border-color-grey;
+    border-radius: $border-radius;
+    color: $color-grey;
+    font-weight: 400;
+    font-size: 16px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-top: $select-arrow-border-width solid $border-color-grey;
+      border-right: $select-arrow-border-width solid $border-color-grey;
+      position: absolute;
+      right: 20px;
+      top: 45%;
+      z-index: 1;
+      transform: translateY(-50%) rotate(135deg);
+      transition: transform 0.2s;
+    }
+
+    &.focused {
+      border-color: $color-black;
+
+      &::after {
+        border-top: $select-arrow-border-width solid $border-color-black;
+        border-right: $select-arrow-border-width solid $border-color-black;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &.filled {
+      color: $color-black;
+      border: 1.5px solid $border-color-black;
+
+      &::after {
+        border-top: $select-arrow-border-width solid $border-color-black;
+        border-right: $select-arrow-border-width solid $border-color-black;
+      }
+    }
+  }
+
+  &-search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+    color: $color-black;
+
+    &::placeholder {
+      color: $color-grey;
+      font-weight: 400;
+      font-size: 16px;
+      opacity: 1;
+    }
+  }
+
+  &-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: $z-index-dropdown;
+    margin-top: 8px;
+    background-color: $bg-white;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: $shadow-popup;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      background: transparent;
+      border-radius: 14px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $color-black;
+      border-radius: 14px;
+    }
+  }
+
+  &-item {
+    padding: 10px;
+    font-weight: 400;
+    font-size: 16px;
+    color: $color-black;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+}
