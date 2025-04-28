@@ -10,7 +10,7 @@ const options = [
 export const UIKit: FC = () => {
   const [value, setValue] = useState("");
   const [value2, setValue2] = useState("");
-  const [selectError, setSelectError] = useState(true);
+  const [selectError] = useState(true);
   const [date, setDate] = useState<Date | null>(new Date());
 
   return (

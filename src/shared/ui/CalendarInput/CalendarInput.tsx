@@ -14,8 +14,8 @@ interface ICalendarInputProps {
   description?: string;
   error?: boolean;
   disabled?: boolean;
-  minDate?: Date | null;
-  maxDate?: Date | null;
+  minDate?: Date | undefined;
+  maxDate?: Date | undefined;
   id?: string;
 }
 
@@ -27,8 +27,8 @@ export const CalendarInput: FC<ICalendarInputProps> = ({
   description = "Выберите нужную дату",
   error = false,
   disabled = false,
-  minDate = null,
-  maxDate = null,
+  minDate = undefined,
+  maxDate = undefined,
   id: propId,
 }) => {
   const generatedId = useId();
