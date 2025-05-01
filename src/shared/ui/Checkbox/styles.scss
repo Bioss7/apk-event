@@ -1,0 +1,86 @@
+@use "@styles/variables" as *;
+
+.checkbox-ui {
+  &-container {
+    display: inline-block;
+    position: relative;
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      .checkbox-ui-custom.checkbox-gray {
+        background-color: $bg-checkbox-gray-hover;
+      }
+
+      .checkbox-ui-custom.checkbox-white {
+        background-color: $bg-checkbox-white-hover;
+      }
+    }
+  }
+
+  &-input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+
+    &:checked + .checkbox-ui-label {
+      .checkbox-ui-custom {
+        &.checkbox-gray {
+          background-color: $bg-primary;
+          border-color: $border-color-primary;
+        }
+
+        &.checkbox-white {
+          background-color: $bg-white;
+          border-color: $border-color-white;
+        }
+      }
+    }
+  }
+
+  &-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &.checkbox-gray {
+      background-color: $bg-checkbox-gray;
+      border: 2px solid $border-color-grey;
+    }
+
+    &.checkbox-white {
+      background-color: $bg-checkbox-gray;
+      border: 2px solid $border-color-white;
+    }
+  }
+
+  &-icon {
+    display: block;
+  }
+
+  &-text {
+    font-weight: 600;
+    font-size: 16px;
+    color: $color-black;
+  }
+
+  &-input:disabled + &-label {
+    cursor: not-allowed;
+  }
+}

@@ -4,3 +4,7 @@ export { Select } from "./Select";
 export { Input } from "./Input";
 export { InputTime } from "./InputTime";
 export { CalendarInput } from "./CalendarInput";
+export { Checkbox } from "./Checkbox";
+export { IconButton } from "./IconButton";
+export { Table } from "./Table";
+export { SidebarMenu } from "./SidebarMenu";

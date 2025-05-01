@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { Icon } from "../Icon";
-import { IconName } from "../Icon/iconTypes";
+import { Icon, IconName } from "../Icon/Icon";
 import "./styles.scss";
 
 interface IButtonProps {
