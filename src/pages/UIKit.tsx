@@ -1,4 +1,14 @@
-import { Button, Select, Input, InputTime, CalendarInput } from "@shared/ui";
+import {
+  Button,
+  Select,
+  Input,
+  InputTime,
+  CalendarInput,
+  Checkbox,
+  IconButton,
+} from "@shared/ui";
+import { SidebarMenu } from "@shared/ui/SidebarMenu";
+import { Table } from "@shared/ui/Table";
 import { FC, useState } from "react";
 
 const options = [
@@ -12,6 +22,21 @@ export const UIKit: FC = () => {
   const [value2, setValue2] = useState("");
   const [selectError] = useState(true);
   const [date, setDate] = useState<Date | null>(new Date());
+
+  const tableData = [
+    {
+      id: "N44",
+      title: "Тестовое мероприятие",
+      startTime: "235000",
+      hall: "Тестовый зал",
+    },
+    {
+      id: "N110",
+      title: "ЦИРК. Крутосветное путешествие богатыря",
+      startTime: "160000",
+      hall: "Тестовый зал",
+    },
+  ];
 
   return (
     <div className="container">
@@ -88,6 +113,7 @@ export const UIKit: FC = () => {
           />
         </div>
         <div className="col-flex">
+          <h2>CalendarInput</h2>
           <CalendarInput
             selectedDate={date}
             onChange={setDate}
@@ -95,6 +121,16 @@ export const UIKit: FC = () => {
             // maxDate={new Date(2025, 11, 31)} // 31 декабря 2025
           />
           <CalendarInput selectedDate={date} onChange={setDate} error={true} />
+        </div>
+        <div className="col-flex">
+          <h2>Checkbox</h2>
+          <Checkbox label="Нумерация слева-направо" variant="checkbox-gray" />
+          <Checkbox label="Нумерация слева-направо" variant="checkbox-white" />
+          <Checkbox
+            label="Нумерация слева-направо"
+            variant="checkbox-white"
+            disabled
+          />
         </div>
       </div>
       <div className="row-flex">
@@ -143,7 +179,24 @@ export const UIKit: FC = () => {
             disabled={true}
           />
         </div>
+        <div className="col-flex">
+          <IconButton iconName="pause" onClick={() => alert("123")} size={40} />
+          <IconButton iconName="start" />
+          <IconButton iconName="edit" />
+          <IconButton iconName="delete" />
+          <IconButton iconName="arrow-left" />
+          <IconButton iconName="arrow-right" />
+        </div>
       </div>
+      <div className="row-flex">
+        <Table
+          data={tableData}
+          showPlayButton={true}
+          onEdit={(id) => console.log("Edit", id)}
+          onDelete={(id) => console.log("Delete", id)}
+        />
+      </div>
+      <SidebarMenu />
     </div>
   );
 };
