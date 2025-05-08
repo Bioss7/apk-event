@@ -1,3 +1,4 @@
+import { EventModal } from "@features/events/ui/EventModal";
 import {
   Button,
   Select,
@@ -6,10 +7,11 @@ import {
   CalendarInput,
   Checkbox,
   IconButton,
+  Table,
+  HeaderPage,
 } from "@shared/ui";
-import { SidebarMenu } from "@shared/ui/SidebarMenu";
-import { Table } from "@shared/ui/Table";
 import { FC, useState } from "react";
+import { Modal } from "@shared/ui/Modal";
 
 const options = [
   { label: "Option One", value: "1" },
@@ -22,6 +24,7 @@ export const UIKit: FC = () => {
   const [value2, setValue2] = useState("");
   const [selectError] = useState(true);
   const [date, setDate] = useState<Date | null>(new Date());
+  const [isModalSideOpen, setIsModalSideOpen] = useState(false);
 
   const tableData = [
     {
@@ -37,6 +40,29 @@ export const UIKit: FC = () => {
       hall: "Тестовый зал",
     },
   ];
+
+  const handleSubmit = async (data: any) => {
+    console.log("Данные мероприятия:", data);
+  };
+
+  // modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+  const [isModalOpen3, setIsModalOpen3] = useState(false);
+  const [isModalOpen4, setIsModalOpen4] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const confirmModal = () => {
+    // удаление мероприятия
+    closeModal();
+  };
+  const openModal2 = () => setIsModalOpen2(true);
+  const closeModal2 = () => setIsModalOpen2(false);
+  const openModal3 = () => setIsModalOpen3(true);
+  const closeModal3 = () => setIsModalOpen3(false);
+  const openModal4 = () => setIsModalOpen4(true);
+  const closeModal4 = () => setIsModalOpen4(false);
 
   return (
     <div className="container">
@@ -189,14 +215,66 @@ export const UIKit: FC = () => {
         </div>
       </div>
       <div className="row-flex">
+        <HeaderPage title="Управление мероприятиями" />
         <Table
           data={tableData}
           showPlayButton={true}
           onEdit={(id) => console.log("Edit", id)}
           onDelete={(id) => console.log("Delete", id)}
         />
+
+        <Button onClick={() => setIsModalSideOpen(true)}>
+          Создать мероприятие
+        </Button>
+
+        <EventModal
+          isOpen={isModalSideOpen}
+          onClose={() => setIsModalSideOpen(false)}
+          onSubmit={handleSubmit}
+        />
       </div>
-      <SidebarMenu />
+      <div className="row-flex">
+        <div className="col-flex">
+          <h2>Modal</h2>
+          <IconButton iconName="delete" onClick={openModal} />
+          <Modal
+            title="Удалить мероприятие?"
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            onConfirm={confirmModal}
+            cancelText="Отменить"
+            confirmText="Удалить"
+          />
+          <Button variant="button-primary" onClick={openModal2}>
+            Ошибка
+          </Button>
+          <Modal
+            title="Ошибка"
+            text="При удалении возникла ошибка, попробуйте еще раз"
+            isOpen={isModalOpen2}
+            onClose={closeModal2}
+            confirmText="Хорошо"
+          />
+          <Button variant="button-primary" onClick={openModal3}>
+            Мероприятие добавлено
+          </Button>
+          <Modal
+            title="Мероприятие добавлено"
+            isOpen={isModalOpen3}
+            onClose={closeModal3}
+            confirmText="Хорошо"
+          />
+          <Button variant="button-primary" onClick={openModal4}>
+            Мероприятие удалено
+          </Button>
+          <Modal
+            title="Мероприятие удалено"
+            isOpen={isModalOpen4}
+            onClose={closeModal4}
+            confirmText="Хорошо"
+          />
+        </div>
+      </div>
     </div>
   );
 };

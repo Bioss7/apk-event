@@ -16,6 +16,7 @@ export default defineConfig({
       "@widgets": "/src/widgets",
       "@store": "/src/store",
       "@pages": "/src/pages",
+      "@app": "/src/app",
     },
   },
 })

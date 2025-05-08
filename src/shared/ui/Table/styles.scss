@@ -1,3 +1,5 @@
+@use "@styles/variables" as *;
+
 .table-container {
   width: 100%;
   overflow-x: auto;
@@ -15,8 +17,8 @@
     font-weight: 500;
     font-size: 18px;
     text-align: left;
-    color: #333333;
-    border-bottom: 1px solid #e0e0e0;
+    color: $color-black;
+    border-bottom: 1px solid $border-color-table;
 
     &:first-child,
     &:last-child {
@@ -26,7 +28,7 @@
 
   thead {
     tr {
-      background-color: #fafafa;
+      background-color: $bg-primary-opacity
     }
 
     th {
@@ -40,11 +42,11 @@
     }
 
     tr:nth-child(odd) {
-      background-color: #ffffff;
+      background-color: $bg-white;
     }
 
     tr:nth-child(even) {
-      background-color: #fafafa;
+      background-color: $bg-primary-opacity;
     }
   }
 }

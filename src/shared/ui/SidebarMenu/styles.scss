@@ -4,12 +4,11 @@
   display: flex;
   flex-direction: column;
   padding: 32px 16px 16px;
-  width: 100%;
-  max-width: 248px;
+  width: 248px;
   height: 976px;
-  background-color: #fafafa;
+  background-color: $bg-primary-opacity;
   border-radius: 12px;
-  transition: width 0.3s ease;
+  transition: width 0.5s ease;
 
   &.hidden {
     width: 86px;
@@ -22,7 +21,8 @@
           justify-content: center;
 
           span {
-            display: none;
+            opacity: 0;
+            transition: opacity 0.15s ease;
           }
 
           svg {
@@ -67,22 +67,29 @@
         text-decoration: none;
         background: none;
         border: none;
-        border-radius: 8px;
+        border-radius: $border-radius;
         cursor: pointer;
         transition: all 0.2s ease;
+        white-space: nowrap;
 
         svg {
           margin-right: 12px;
+          flex-shrink: 0;
+          transition: margin-right 0.2s ease;
+        }
+
+        span {
+          transition: opacity 0.2s ease;
         }
 
         &.active,
         &:hover {
-          background-color: #f9e5c8;
+          background-color: $bg-btn-hover;
           font-weight: 600;
-          color: #f39100;
+          color: $color-primary;
 
           svg path {
-            fill: #f39100;
+            fill: $color-primary;
           }
 
           position: relative;
@@ -95,9 +102,9 @@
             display: block;
             width: 4px;
             height: 48px;
-            background-color: #f39100;
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
+            background-color: $bg-primary;
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
           }
         }
       }

@@ -1,0 +1,102 @@
+@use "@styles/variables" as *;
+
+.side-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 548px;
+  height: 100vh;
+  background-color: $bg-white;
+  z-index: 1001;
+  padding: 32px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    will-change: opacity;
+
+    &.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-title {
+    font-weight: 700;
+    font-size: 32px;
+    color: $color-black;
+    margin-bottom: 16px;
+  }
+
+  &-close {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &-content {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $color-white;
+    padding-bottom: 24px;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $bg-white;
+      border-radius: 3px;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 16px;
+    margin-top: auto;
+  }
+
+  & .input-ui-container,
+  .select-ui-container {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+}

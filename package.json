@@ -17,12 +17,17 @@
     "@floating-ui/utils": "^0.2.9",
     "@types/react-datepicker": "^7.0.0",
     "clsx": "^2.1.1",
+    "cookie": "^1.0.2",
     "date-fns": "^4.1.0",
     "react": "^19.1.0",
     "react-datepicker": "^8.3.0",
     "react-dom": "^19.1.0",
+    "react-router": "^7.5.3",
+    "react-router-dom": "^7.5.3",
     "scheduler": "^0.26.0",
-    "tabbable": "^6.2.0"
+    "set-cookie-parser": "^2.7.1",
+    "tabbable": "^6.2.0",
+    "turbo-stream": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
@@ -37,5 +42,6 @@
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.3.1"
-  }
+  },
+  "packageManager": "pnpm@10.6.3+sha512.bb45e34d50a9a76e858a95837301bfb6bd6d35aea2c5d52094fa497a467c43f5c440103ce2511e9e0a2f89c3d6071baac3358fc68ac6fb75e2ceb3d2736065e6"
 }

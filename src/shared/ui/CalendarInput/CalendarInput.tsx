@@ -23,7 +23,7 @@ export const CalendarInput: FC<ICalendarInputProps> = ({
   selectedDate = null,
   onChange,
   placeholder = "Выберите дату",
-  label = "Дата",
+  label,
   description = "Выберите нужную дату",
   error = false,
   disabled = false,

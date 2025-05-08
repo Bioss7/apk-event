@@ -9,6 +9,7 @@ interface IIconButtonProps {
   color?: string;
   size?: number;
   ariaLabel?: string;
+  className?: string;
 }
 
 export const IconButton: FC<IIconButtonProps> = ({
@@ -18,10 +19,11 @@ export const IconButton: FC<IIconButtonProps> = ({
   color,
   size = 40,
   ariaLabel = "",
+  className = "",
 }) => {
   return (
     <button
-      className="icon-button"
+      className={`icon-button ${className}`}
       onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel}

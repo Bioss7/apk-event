@@ -1,0 +1,29 @@
+.header-page {
+  margin-bottom: 24px;
+
+  &--button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &--input {
+    .text-32-bold {
+      margin-bottom: 24px;
+    }
+
+    .input-ui-container {
+      width: 190px;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 24px;
+  }
+
+  button {
+    max-width: 151px;
+  }
+}

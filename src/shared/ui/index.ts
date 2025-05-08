@@ -8,3 +8,5 @@ export { Checkbox } from "./Checkbox";
 export { IconButton } from "./IconButton";
 export { Table } from "./Table";
 export { SidebarMenu } from "./SidebarMenu";
+export { HeaderPage } from "./HeaderPage";
+export { SideModal } from "./SideModal";

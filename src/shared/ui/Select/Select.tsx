@@ -21,9 +21,9 @@ export const Select: FC<ISelectProps> = ({
   options,
   value,
   onChange,
-  placeholder = "Select...",
-  label = "Title",
-  description = "Description",
+  placeholder,
+  label,
+  description,
   error = false,
   disabled = false,
 }) => {

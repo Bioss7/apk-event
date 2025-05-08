@@ -1,0 +1,47 @@
+.auth {
+  &__wrapper {
+    display: flex;
+    gap: 322px;
+    padding: 24px;
+  }
+
+  &__img {
+    img {
+      max-width: 936px;
+      width: 100%;
+      height: 976px;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 316px;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 62px;
+      object-fit: cover;
+      margin-bottom: 32px;
+    }
+
+    .select-ui-container {
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .input-ui-container {
+      margin-bottom: 16px;
+      width: 100%;
+    }
+
+    .button-ui {
+      margin-top: 16px;
+      width: 100%;
+    }
+  }
+}

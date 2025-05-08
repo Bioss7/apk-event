@@ -10,12 +10,12 @@
   cursor: pointer;
   transition: all 0.2s ease;
 
-  &:active:not(:disabled) {
-    transform: scale(0.95);
-  }
-
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  &:hover {
+    box-shadow: 0px 4px 14px 0px #f391001a;
   }
 }
