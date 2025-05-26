@@ -10,3 +10,5 @@ export { Table } from "./Table";
 export { SidebarMenu } from "./SidebarMenu";
 export { HeaderPage } from "./HeaderPage";
 export { SideModal } from "./SideModal";
+export { FloatingMenu } from "./FloatingMenu";
+export { ScheduleTable } from "./ScheduleTable";

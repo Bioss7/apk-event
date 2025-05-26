@@ -1,36 +1,36 @@
 import { useState, FormEvent, useEffect } from "react";
-import { Button, SideModal, Input, Select, InputTime } from "@shared/ui";
+import { Button, SideModal, Input, InputTime } from "@shared/ui";
 import { Modal } from "@shared/ui/Modal";
 
-interface IEventFormData {
+interface IPeriodFormData {
   title: string;
   startTime: string;
   category: string;
   location: string;
 }
 
-interface EventModalProps {
+interface PeriodModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: IEventFormData) => Promise<void> | void;
+  onSubmit: (data: IPeriodFormData) => Promise<void> | void;
   mode?: "create" | "edit";
   initialData?: any;
 }
 
-export const EventModal = ({
+export const PeriodModal = ({
   isOpen,
   onClose,
   onSubmit,
   mode = "create",
   initialData,
-}: EventModalProps) => {
-  const [formData, setFormData] = useState<IEventFormData>({
+}: PeriodModalProps) => {
+  const [formData, setFormData] = useState<IPeriodFormData>({
     title: "",
     startTime: "",
     category: "",
     location: "",
   });
-  const [errors, setErrors] = useState<Record<keyof IEventFormData, string>>({
+  const [errors, setErrors] = useState<Record<keyof IPeriodFormData, string>>({
     title: "",
     startTime: "",
     category: "",
@@ -63,19 +63,7 @@ export const EventModal = ({
     });
   }, [mode, initialData, isOpen]);
 
-  const categoryOptions = [
-    { value: "meeting", label: "Встреча" },
-    { value: "conference", label: "Конференция" },
-    { value: "webinar", label: "Вебинар" },
-  ];
-
-  const locationOptions = [
-    { value: "online", label: "Онлайн" },
-    { value: "office", label: "Офис" },
-    { value: "other", label: "Другое" },
-  ];
-
-  const handleInputChange = (field: keyof IEventFormData, value: string) => {
+  const handleInputChange = (field: keyof IPeriodFormData, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -138,7 +126,7 @@ export const EventModal = ({
         onClose={onClose}
         title={
           mode === "create"
-            ? "Создать мероприятие"
+            ? "Создать зал"
             : `Редактирование «${initialData.title}»`
         }
         actions={actions}
@@ -160,23 +148,23 @@ export const EventModal = ({
           error={!!errors.startTime}
           description={errors.startTime}
         />
-        <Select
-          label="Категория"
-          options={categoryOptions}
-          value={formData.category}
-          onChange={(value) => handleInputChange("category", value)}
-          placeholder="Выберите категорию"
-          error={!!errors.category}
-          description={errors.category}
+        <Input
+          type="number"
+          label="Порог гостей"
+          placeholder="Введите название..."
+          value={formData.title}
+          onChange={(value) => handleInputChange("title", value)}
+          error={!!errors.title}
+          description={errors.title}
         />
-        <Select
-          label="Локация"
-          options={locationOptions}
-          value={formData.location}
-          onChange={(value) => handleInputChange("location", value)}
-          placeholder="Выберите локацию"
-          error={!!errors.location}
-          description={errors.location}
+        <Input
+          type="number"
+          label="Порог смещения"
+          placeholder="Введите название..."
+          value={formData.title}
+          onChange={(value) => handleInputChange("title", value)}
+          error={!!errors.title}
+          description={errors.title}
         />
       </SideModal>
       <Modal

@@ -3,7 +3,7 @@ import { Icon } from "../Icon";
 import "./styles.scss";
 
 interface IInputProps {
-  type?: "text" | "time" | "password";
+  type?: "text" | "time" | "password" | "number";
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
@@ -19,7 +19,7 @@ export const Input: FC<IInputProps> = ({
   value: propValue,
   onChange,
   placeholder = "",
-  label = "Title",
+  label = "",
   description = "Description",
   error = false,
   disabled = false,
@@ -52,9 +52,11 @@ export const Input: FC<IInputProps> = ({
         error ? "error" : ""
       }`}
     >
-      <label className="input-ui-label" htmlFor={id}>
-        {label}
-      </label>
+      {label && (
+        <label className="input-ui-label" htmlFor={id}>
+          {label}
+        </label>
+      )}
 
       <div className="input-ui-field-wrapper">
         <input

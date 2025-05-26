@@ -8,6 +8,8 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
   font-size: 14px;
 
   th,
@@ -18,7 +20,10 @@
     font-size: 18px;
     text-align: left;
     color: $color-black;
-    border-bottom: 1px solid $border-color-table;
+
+    &:last-child {
+      width: 105px;
+    }
 
     &:first-child,
     &:last-child {
@@ -28,17 +33,34 @@
 
   thead {
     tr {
-      background-color: $bg-primary-opacity
+      background-color: $bg-primary-opacity;
     }
 
     th {
       font-weight: 600;
+
+      &.table-number {
+        width: 75px !important;
+      }
+
+      &.table-play {
+        width: 62px;
+      }
+
+      &:not(:first-child, :last-child) {
+        width: 325px;
+      }
     }
   }
 
   tbody {
     td {
       padding: 28px 24px;
+
+      &.table-number {
+        width: 75px !important;
+        word-break: break-all;
+      }
     }
 
     tr:nth-child(odd) {
@@ -47,18 +69,20 @@
 
     tr:nth-child(even) {
       background-color: $bg-primary-opacity;
+
+      td:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+      td:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
     }
   }
 }
 
 .table-actions {
   display: flex;
-
-  & .icon-button {
-    margin-right: 16px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
+  gap: 16px;
 }

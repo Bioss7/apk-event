@@ -1,36 +1,36 @@
 import { useState, FormEvent, useEffect } from "react";
-import { Button, SideModal, Input, Select, InputTime } from "@shared/ui";
+import { Button, SideModal, Input, Select, Checkbox } from "@shared/ui";
 import { Modal } from "@shared/ui/Modal";
 
-interface IEventFormData {
+interface IHallFormData {
   title: string;
   startTime: string;
   category: string;
   location: string;
 }
 
-interface EventModalProps {
+interface HallModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: IEventFormData) => Promise<void> | void;
+  onSubmit: (data: IHallFormData) => Promise<void> | void;
   mode?: "create" | "edit";
   initialData?: any;
 }
 
-export const EventModal = ({
+export const HallModal = ({
   isOpen,
   onClose,
   onSubmit,
   mode = "create",
   initialData,
-}: EventModalProps) => {
-  const [formData, setFormData] = useState<IEventFormData>({
+}: HallModalProps) => {
+  const [formData, setFormData] = useState<IHallFormData>({
     title: "",
     startTime: "",
     category: "",
     location: "",
   });
-  const [errors, setErrors] = useState<Record<keyof IEventFormData, string>>({
+  const [errors, setErrors] = useState<Record<keyof IHallFormData, string>>({
     title: "",
     startTime: "",
     category: "",
@@ -63,19 +63,13 @@ export const EventModal = ({
     });
   }, [mode, initialData, isOpen]);
 
-  const categoryOptions = [
+  const numberingTypeOptions = [
     { value: "meeting", label: "Встреча" },
     { value: "conference", label: "Конференция" },
     { value: "webinar", label: "Вебинар" },
   ];
 
-  const locationOptions = [
-    { value: "online", label: "Онлайн" },
-    { value: "office", label: "Офис" },
-    { value: "other", label: "Другое" },
-  ];
-
-  const handleInputChange = (field: keyof IEventFormData, value: string) => {
+  const handleInputChange = (field: keyof IHallFormData, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -138,7 +132,7 @@ export const EventModal = ({
         onClose={onClose}
         title={
           mode === "create"
-            ? "Создать мероприятие"
+            ? "Создать зал"
             : `Редактирование «${initialData.title}»`
         }
         actions={actions}
@@ -146,38 +140,50 @@ export const EventModal = ({
       >
         <Input
           type="text"
-          label="Название мероприятия"
+          label="Название зала"
           placeholder="Введите название..."
           value={formData.title}
           onChange={(value) => handleInputChange("title", value)}
           error={!!errors.title}
           description={errors.title}
         />
-        <InputTime
-          label="Время начала"
-          value={formData.startTime}
-          onChange={(value) => handleInputChange("startTime", value)}
-          error={!!errors.startTime}
-          description={errors.startTime}
+        <Input
+          type="text"
+          label="Секторов в зале"
+          placeholder="Введите название..."
+          value={formData.title}
+          onChange={(value) => handleInputChange("title", value)}
+          error={!!errors.title}
+          description={errors.title}
+        />
+        <Input
+          type="text"
+          label="Рядов в секторе"
+          placeholder="Введите название..."
+          value={formData.title}
+          onChange={(value) => handleInputChange("title", value)}
+          error={!!errors.title}
+          description={errors.title}
+        />
+        <Input
+          type="text"
+          label="Мест в ряду"
+          placeholder="Введите название..."
+          value={formData.title}
+          onChange={(value) => handleInputChange("title", value)}
+          error={!!errors.title}
+          description={errors.title}
         />
         <Select
-          label="Категория"
-          options={categoryOptions}
+          label="Тип нумерации"
+          options={numberingTypeOptions}
           value={formData.category}
           onChange={(value) => handleInputChange("category", value)}
-          placeholder="Выберите категорию"
+          placeholder="Тип нумерации"
           error={!!errors.category}
           description={errors.category}
         />
-        <Select
-          label="Локация"
-          options={locationOptions}
-          value={formData.location}
-          onChange={(value) => handleInputChange("location", value)}
-          placeholder="Выберите локацию"
-          error={!!errors.location}
-          description={errors.location}
-        />
+        <Checkbox label="Нумерация слева-направо" variant="checkbox-gray" />
       </SideModal>
       <Modal
         title="Мероприятие добавлено"

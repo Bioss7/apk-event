@@ -1,38 +1,50 @@
-import { EventModal } from "@features/events/ui/EventModal";
-import { EventsTable } from "@features/events/ui/EventsTable";
+import { PeriodModal } from "@features/periods/ui/PeriodModal";
+import { PeriodsTable } from "@features/periods/ui/PeriodsTable";
 import { HeaderPage } from "@shared/ui";
 import { Modal } from "@shared/ui/Modal";
 import { FC, useState } from "react";
 
 const tableData = {
   columns: [
-    { key: "title", title: "Название мероприятия" },
+    { key: "title", title: "Мероприятие" },
     { key: "startTime", title: "Время начала" },
-    { key: "hall", title: "Зал" },
+    { key: "guestThreshold", title: "Порог гостей" },
+    { key: "offsetThreshold", title: "Порог смещения" },
   ],
   rows: [
     {
-      id: "N44",
-      title: "Тестовое мероприятие",
+      id: "N7",
+      title: "«Тестовый зал»",
       startTime: "235000",
-      hall: "Тестовый зал",
+      guestThreshold: 1,
+      offsetThreshold: 25,
     },
     {
       id: "N110",
-      title: "ЦИРК. Крутосветное путешествие богатыря",
-      startTime: "160000",
-      hall: "Тестовый зал",
+      title: "«Арена под Навку»",
+      startTime: "235000",
+      guestThreshold: 1,
+      offsetThreshold: 25,
     },
     {
-      id: "№ 69 «Новое мероприятие»",
-      title: "ЦИРК. Крутосветное путешествие богатыря",
-      startTime: "160000",
+      id: "№9",
+      title: "«Цирк»",
+      startTime: "235000",
       hall: "Тестовый зал",
+      guestThreshold: 1,
+      offsetThreshold: 25,
+    },
+    {
+      id: "№16",
+      title: "«Новый зал»",
+      startTime: "235000",
+      guestThreshold: 1,
+      offsetThreshold: 25,
     },
   ],
 };
 
-export const EventsPage: FC = () => {
+export const PeriodsPage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<"create" | "edit">("create");
   const [currentEvent, setCurrentEvent] = useState<any>(null);
@@ -85,14 +97,9 @@ export const EventsPage: FC = () => {
 
   return (
     <div>
-      <HeaderPage title="Управление мероприятиями" onClick={handleAdd} />
-      <EventsTable
-        data={data}
-        onEdit={handleEdit}
-        // onDelete={(id) => console.log("Delete", id)}
-        onDelete={handleDelete}
-      />
-      <EventModal
+      <HeaderPage title="Управление периодами" onClick={handleAdd} />
+      <PeriodsTable data={data} onEdit={handleEdit} onDelete={handleDelete} />
+      <PeriodModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleSubmit}

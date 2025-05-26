@@ -2,15 +2,24 @@ import { FC, useState } from "react";
 import { IconButton } from "../IconButton";
 import "./styles.scss";
 
-interface TableData {
-  id: string;
+interface TableColumn {
+  key: string;
   title: string;
-  startTime: string;
-  hall: string;
+  className?: string;
+}
+
+interface TableDataItem {
+  id: string;
+  [key: string]: any;
+}
+
+interface TableData {
+  columns: TableColumn[];
+  rows: TableDataItem[];
 }
 
 interface TableProps {
-  data: TableData[];
+  data: TableData;
   showPlayButton?: boolean;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
@@ -46,16 +55,18 @@ export const Table: FC<TableProps> = ({
       <table className="table">
         <thead>
           <tr>
-            {showPlayButton && <th></th>}
-            <th>№</th>
-            <th>Название мероприятия</th>
-            <th>Время начала</th>
-            <th>Зал</th>
+            {showPlayButton && <th className="table-play"></th>}
+            <th className="table-number">№</th>
+            {data.columns.map((column) => (
+              <th key={column.key} className={column.className}>
+                {column.title}
+              </th>
+            ))}
             <th>Действия</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {data.rows.map((item) => (
             <tr key={item.id}>
               {showPlayButton && (
                 <td>
@@ -65,10 +76,14 @@ export const Table: FC<TableProps> = ({
                   />
                 </td>
               )}
-              <td>{item.id}</td>
-              <td>{item.title}</td>
-              <td>{formatTime(item.startTime)}</td>
-              <td>{item.hall}</td>
+              <td className="table-number">{item.id}</td>
+              {data.columns.map((column) => (
+                <td key={`${item.id}-${column.key}`}>
+                  {column.key === "startTime"
+                    ? formatTime(item[column.key])
+                    : item[column.key]}
+                </td>
+              ))}
               <td>
                 <div className="table-actions">
                   <IconButton

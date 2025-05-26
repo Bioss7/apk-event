@@ -14,7 +14,7 @@ interface ICheckboxProps {
 export const Checkbox: FC<ICheckboxProps> = ({
   checked: propChecked = false,
   onChange,
-  label = "Checkbox label",
+  label = "",
   disabled = false,
   id: propId,
   variant = "checkbox-gray",

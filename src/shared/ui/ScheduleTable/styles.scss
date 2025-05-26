@@ -1,0 +1,128 @@
+@use "@styles/variables" as *;
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-schedule {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  background-color: white;
+
+  th,
+  td {
+    font-weight: 500;
+    font-size: 18px;
+    color: $color-black;
+  }
+
+  thead {
+    tr {
+      background-color: $bg-primary-opacity;
+    }
+
+    th {
+      font-weight: 600;
+      font-size: 18px;
+      text-align: center;
+      padding: 18px 0;
+
+      &:first-child {
+        text-align: left;
+        padding: 0 20px;
+        width: 240px;
+      }
+
+      &:last-child {
+        width: 80px;
+      }
+
+      .date-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        font-size: 18px;
+
+        .day-name {
+          font-weight: 700;
+        }
+
+        .date {
+          font-weight: 500;
+        }
+      }
+
+      &.day-header {
+        width: 175px;
+      }
+
+      &.weekend-header {
+        width: 175px;
+        background-color: $bg-primary;
+
+        .day-name,
+        .date {
+          color: white;
+        }
+      }
+
+      &:nth-child(8).weekend-header {
+        border-top-left-radius: 8px;
+      }
+
+      &:nth-child(9).weekend-header {
+        border-top-right-radius: 8px;
+      }
+    }
+  }
+
+  tbody {
+    tr:last-child {
+      td {
+        border-bottom: none;
+
+        &.weekend-cell {
+          &:nth-child(8) {
+            border-bottom-left-radius: 8px;
+          }
+
+          &:nth-child(9) {
+            border-bottom-right-radius: 8px;
+          }
+        }
+      }
+    }
+
+    tr:nth-child(odd) {
+      background-color: $bg-white;
+    }
+
+    tr:nth-child(even) {
+      background-color: $bg-primary-opacity;
+    }
+
+    td {
+      text-align: left;
+      padding: 29px 20px;
+
+      .checkbox-ui-label {
+        display: unset;
+      }
+
+      .day-checkbox {
+        display: flex;
+        justify-content: center;
+      }
+
+      &.weekend-cell {
+        background-color: $bg-primary;
+      }
+    }
+  }
+}

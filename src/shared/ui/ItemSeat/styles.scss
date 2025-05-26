@@ -1,0 +1,118 @@
+@use "@styles/variables" as *;
+
+.item-seat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &.icon {
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.disabled {
+    border: none;
+    background: $color-grey;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  &.icon.disabled {
+    background: $color-grey;
+    color: #8E8E8E;
+  }
+}
+
+.sector-a {
+  background: $color-sector-a;
+
+  &.selected {
+    border: 3px solid #B2D2DF;
+  }
+
+  &.icon {
+    background: url('../../../assets/images/sector-a.png') center center no-repeat;
+
+    &.selected {
+      background: url('../../../assets/images/sector-a-selected.png') center center no-repeat;
+      border: none;
+    }
+  }
+}
+
+.sector-b {
+  background: $color-sector-b;
+
+  &.selected {
+    border: 3px solid #70E3D5;
+  }
+
+  &.icon {
+    background: url('../../../assets/images/sector-b.png') center center no-repeat;
+
+    &.selected {
+      background: url('../../../assets/images/sector-b-selected.png') center center no-repeat;
+      border: none;
+    }
+  }
+}
+
+.sector-c {
+  background: $color-sector-c;
+
+  &.selected {
+    border: 3px solid #618311;
+  }
+
+  &.icon {
+    background: url('../../../assets/images/sector-c.png') center center no-repeat;
+
+    &.selected {
+      background: url('../../../assets/images/sector-c-selected.png') center center no-repeat;
+      border: none;
+    }
+  }
+}
+
+.sector-d {
+  background: $color-sector-d;
+
+  &.selected {
+    border: 3px solid #AE48AE;
+  }
+
+  &.icon {
+    background: url('../../../assets/images/sector-d.png') center center no-repeat;
+
+    &.selected {
+      background: url('../../../assets/images/sector-d-selected.png') center center no-repeat;
+      border: none;
+    }
+  }
+}
+
+.sector-e {
+  background: $color-sector-e;
+
+  &.selected {
+    border: 3px solid #BF74FF;
+  }
+
+  &.icon {
+    background: url('../../../assets/images/sector-e.png') center center no-repeat;
+
+    &.selected {
+      background: url('../../../assets/images/sector-e-selected.png') center center no-repeat;
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,111 @@
+@use "@styles/variables" as *;
+
+.floating-menu {
+  display: flex;
+  padding: 20px;
+  width: max-content;
+  align-items: center;
+
+  border-radius: 8px;
+  background: $bg-white;
+
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    color: $color-black;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  &__elements {
+    padding: 0 24px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:not(:last-of-type) {
+      border-right: 1px solid $border-color-grey;
+    }
+  }
+
+  .button-toggle {
+    margin-left: auto;
+    width: 40px;
+    padding: 0;
+
+    svg {
+      margin-right: 0;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+
+    .button-sector {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      margin-right: 0;
+
+      svg {
+        margin-right: 0;
+      }
+    }
+
+    &--input {
+      gap: 20px;
+
+      .input-ui-container {
+        width: 120px;
+        height: 49px;
+
+        &:first-child {
+          position: relative;
+
+          &::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: $bg-grey;
+            position: absolute;
+            top: 50%;
+            left: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 8px;
+    color: $color-black;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    svg {
+      margin-right: 8px;
+      flex-shrink: 0;
+      transition: margin-right 0.2s ease;
+    }
+
+    span {
+      transition: opacity 0.2s ease;
+    }
+  }
+}

@@ -9,7 +9,9 @@ import {
   IconButton,
   Table,
   HeaderPage,
+  FloatingMenu,
 } from "@shared/ui";
+import { ItemSeat } from "@shared/ui/ItemSeat";
 import { FC, useState } from "react";
 import { Modal } from "@shared/ui/Modal";
 
@@ -26,20 +28,33 @@ export const UIKit: FC = () => {
   const [date, setDate] = useState<Date | null>(new Date());
   const [isModalSideOpen, setIsModalSideOpen] = useState(false);
 
-  const tableData = [
-    {
-      id: "N44",
-      title: "Тестовое мероприятие",
-      startTime: "235000",
-      hall: "Тестовый зал",
-    },
-    {
-      id: "N110",
-      title: "ЦИРК. Крутосветное путешествие богатыря",
-      startTime: "160000",
-      hall: "Тестовый зал",
-    },
-  ];
+  const tableData = {
+    columns: [
+      { key: "title", title: "Название мероприятия" },
+      { key: "startTime", title: "Время начала" },
+      { key: "hall", title: "Зал" },
+    ],
+    rows: [
+      {
+        id: "N44",
+        title: "Тестовое мероприятие",
+        startTime: "235000",
+        hall: "Тестовый зал",
+      },
+      {
+        id: "N110",
+        title: "ЦИРК. Крутосветное путешествие богатыря",
+        startTime: "160000",
+        hall: "Тестовый зал",
+      },
+      {
+        id: "№ 69 «Новое мероприятие»",
+        title: "ЦИРК. Крутосветное путешествие богатыря",
+        startTime: "160000",
+        hall: "Тестовый зал",
+      },
+    ],
+  };
 
   const handleSubmit = async (data: any) => {
     console.log("Данные мероприятия:", data);
@@ -273,6 +288,38 @@ export const UIKit: FC = () => {
             onClose={closeModal4}
             confirmText="Хорошо"
           />
+        </div>
+        <FloatingMenu />
+      </div>
+      <div className="row-flex">
+        <div className="col-flex">
+          <h2>Sector elements</h2>
+          <div className="row-flex">
+            <ItemSeat sector="A" />
+            <ItemSeat sector="A" icon="OFF" />
+            <ItemSeat sector="A" icon="OFF" isDisabled />
+            <ItemSeat sector="A" isDisabled />
+          </div>
+          <div className="row-flex">
+            <ItemSeat sector="B" />
+            <ItemSeat sector="B" icon="BLOCK" />
+            <ItemSeat sector="B" icon="BLOCK" isDisabled />
+          </div>
+          <div className="row-flex">
+            <ItemSeat sector="C" />
+            <ItemSeat sector="C" icon="TEMP_BLOCK" />
+            <ItemSeat sector="C" icon="TEMP_BLOCK" isDisabled />
+          </div>
+          <div className="row-flex">
+            <ItemSeat sector="D" />
+            <ItemSeat sector="D" icon="BOOK" />
+            <ItemSeat sector="D" icon="BOOK" isDisabled />
+          </div>
+          <div className="row-flex">
+            <ItemSeat sector="E" />
+            <ItemSeat sector="E" icon="CLEAR" />
+            <ItemSeat sector="E" icon="CLEAR" isDisabled />
+          </div>
         </div>
       </div>
     </div>
