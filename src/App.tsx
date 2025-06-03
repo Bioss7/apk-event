@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { HallsPage } from "@pages/HallsPage";
 import { PeriodsPage } from "@pages/PeriodsPage";
 import { SchedulerPage } from "@pages/SchedulerPage";
+import { PictureHallPage } from "@pages/PictureHallPage";
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
         <Route path="/halls" element={<HallsPage />} />
         <Route path="/periods" element={<PeriodsPage />} />
         <Route path="/scheduler" element={<SchedulerPage />} />
-        {/* <Route path="/picture-hall" element={<PictureHallPage />} />
-      <Route path="/devices" element={<DevicesPage />} />
-      <Route path="*" element={<EventsPage />} />} */}
+        <Route path="/picture-hall" element={<PictureHallPage />} />
+        {/* <Route path="/devices" element={<DevicesPage />} />
+        <Route path="*" element={<EventsPage />} /> */}
       </Routes>
     </Layout>
   );

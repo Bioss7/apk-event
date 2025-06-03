@@ -1,4 +1,4 @@
-import { FC, memo, useState } from "react";
+import { FC, memo, useState, useEffect } from "react";
 import { MenuButton } from "./components/MenuButton";
 import "./styles.scss";
 import {
@@ -18,8 +18,16 @@ import {
 import { Input } from "../Input";
 
 interface FloatingMenuProps {
+  selectedSeats?: Set<string>;
   onMenuToggle?: (isHidden: boolean) => void;
   initialIsHidden?: boolean;
+  onSeatRangeChange?: (from: string, to: string) => void;
+  onActionClick?: (
+    action: "disable" | "block" | "temporaryBlock" | "reserve" | "clear"
+  ) => void;
+  onSectorChange?: (sector: "A" | "B" | "C" | "D" | "E") => void;
+  currentSector?: "A" | "B" | "C" | "D" | "E";
+  isFixed?: boolean;
 }
 
 type MenuAction = "disable" | "block" | "temporaryBlock" | "reserve" | "clear";
@@ -64,9 +72,59 @@ const SECTOR_ACTIONS: SectorActionConfig[] = [
   { id: "sectorE", icon: <SectorEIcon /> },
 ];
 
+const getSeatRanges = (selectedSeats: Set<string>) => {
+  if (!selectedSeats || selectedSeats.size === 0) return { from: "", to: "" };
+
+  const seatNumbers = Array.from(selectedSeats)
+    .map((seat) => {
+      const [row, seatIndex] = seat.split("-").map(Number);
+      return row * 53 + seatIndex + 1; // 53 мест в ряду
+    })
+    .sort((a, b) => a - b);
+
+  if (seatNumbers.length === 1) {
+    return { from: seatNumbers[0].toString(), to: seatNumbers[0].toString() };
+  }
+
+  const min = Math.min(...seatNumbers);
+  const max = Math.max(...seatNumbers);
+
+  return { from: min.toString(), to: max.toString() };
+};
+
 export const FloatingMenu: FC<FloatingMenuProps> = memo(
-  ({ onMenuToggle, initialIsHidden = true }) => {
+  ({
+    selectedSeats = new Set<string>(),
+    onMenuToggle,
+    initialIsHidden = true,
+    onSeatRangeChange,
+    onActionClick,
+    onSectorChange,
+    currentSector = "A",
+    isFixed = true,
+  }) => {
     const [isHidden, setIsHidden] = useState(initialIsHidden);
+    const [inputValues, setInputValues] = useState({ from: "", to: "" });
+
+    useEffect(() => {
+      const ranges = getSeatRanges(selectedSeats);
+      setInputValues((prev) => {
+        if (prev.from !== ranges.from || prev.to !== ranges.to) {
+          return ranges;
+        }
+        return prev;
+      });
+    }, [selectedSeats]);
+
+    const handleFromChange = (value: string) => {
+      setInputValues((prev) => ({ ...prev, from: value }));
+      onSeatRangeChange?.(value, inputValues.to);
+    };
+
+    const handleToChange = (value: string) => {
+      setInputValues((prev) => ({ ...prev, to: value }));
+      onSeatRangeChange?.(inputValues.from, value);
+    };
 
     const toggleMenu = () => {
       setIsHidden((prev) => {
@@ -76,13 +134,22 @@ export const FloatingMenu: FC<FloatingMenuProps> = memo(
       });
     };
 
-    const handleActionClick = (action: MenuAction) => {
-      console.log("Action clicked:", action);
-      // Здесь будет логика обработки действий
+    const handleActionClick = (
+      action: "disable" | "block" | "temporaryBlock" | "reserve" | "clear"
+    ) => {
+      onActionClick?.(action);
+    };
+
+    const handleSectorClick = (sector: "A" | "B" | "C" | "D" | "E") => {
+      onSectorChange?.(sector);
     };
 
     return (
-      <div className={`floating-menu ${isHidden ? "hidden" : ""}`}>
+      <div
+        className={`floating-menu ${isHidden ? "hidden" : ""} ${
+          isFixed ? "" : "static"
+        }`}
+      >
         <div className="floating-menu__elements">
           <div className="floating-menu__title">Управление местами</div>
           {isHidden && (
@@ -110,9 +177,18 @@ export const FloatingMenu: FC<FloatingMenuProps> = memo(
                 <MenuButton
                   key={action.id}
                   icon={action.icon}
-                  isActive={false}
+                  isActive={currentSector === action.id.replace("sector", "")}
                   isHidden={isHidden}
-                  onClick={() => console.log("A")}
+                  onClick={() =>
+                    handleSectorClick(
+                      action.id.replace("sector", "") as
+                        | "A"
+                        | "B"
+                        | "C"
+                        | "D"
+                        | "E"
+                    )
+                  }
                   className="button-sector"
                 />
               ))}
@@ -124,8 +200,18 @@ export const FloatingMenu: FC<FloatingMenuProps> = memo(
           <div className="floating-menu__title">Выбранные места</div>
           {isHidden && (
             <div className="floating-menu__actions floating-menu__actions--input">
-              <Input type="text" placeholder="1" />
-              <Input type="text" placeholder="1" />
+              <Input
+                type="number"
+                placeholder="От"
+                value={inputValues.from}
+                onChange={handleFromChange}
+              />
+              <Input
+                type="number"
+                placeholder="До"
+                value={inputValues.to}
+                onChange={handleToChange}
+              />
             </div>
           )}
         </div>

@@ -48,7 +48,7 @@ export const UIKit: FC = () => {
         hall: "Тестовый зал",
       },
       {
-        id: "№ 69 «Новое мероприятие»",
+        id: "№ 69",
         title: "ЦИРК. Крутосветное путешествие богатыря",
         startTime: "160000",
         hall: "Тестовый зал",
@@ -289,6 +289,8 @@ export const UIKit: FC = () => {
             confirmText="Хорошо"
           />
         </div>
+      </div>
+      <div className="row-flex">
         <FloatingMenu />
       </div>
       <div className="row-flex">

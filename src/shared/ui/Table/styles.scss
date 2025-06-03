@@ -7,9 +7,8 @@
 
 .table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
   border-spacing: 0;
-  table-layout: fixed;
   font-size: 14px;
 
   th,
@@ -22,7 +21,7 @@
     color: $color-black;
 
     &:last-child {
-      width: 105px;
+      min-width: 136px;
     }
 
     &:first-child,
@@ -40,15 +39,15 @@
       font-weight: 600;
 
       &.table-number {
-        width: 75px !important;
+        min-width: 75px !important;
       }
 
       &.table-play {
-        width: 62px;
+        min-width: 62px;
       }
 
       &:not(:first-child, :last-child) {
-        width: 325px;
+        min-width: 325px;
       }
     }
   }
@@ -58,7 +57,7 @@
       padding: 28px 24px;
 
       &.table-number {
-        width: 75px !important;
+        min-width: 75px !important;
         word-break: break-all;
       }
     }

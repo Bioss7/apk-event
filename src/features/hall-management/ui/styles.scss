@@ -1,0 +1,85 @@
+@use "@styles/variables" as *;
+
+.hall-management-wrapper {
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.sidebar.hidden + main .floating-menu {
+  width: calc(100vw - 180px);
+}
+
+.floating-menu {
+  position: fixed;
+  bottom: 24px;
+  width: calc(100vw - 324px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  &.static {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 24px;
+  }
+}
+
+.hall-management {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: auto;
+  max-height: 100vh;
+  background-color: $color-white;
+  user-select: none;
+  position: relative;
+
+  & .hall-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+
+  & .row-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: $color-grey;
+    font-weight: 400;
+    font-size: 14px;
+    flex-shrink: 0;
+
+    &.left {
+      justify-content: right;
+    }
+
+    &.right {
+      justify-content: left;
+    }
+  }
+
+  & .item-seat {
+    flex-shrink: 0;
+    position: relative;
+
+    &.selected {
+      position: relative;
+    }
+  }
+
+  & .selection-box {
+    position: fixed;
+    background-color: rgba(100, 180, 255, 0.15);
+    border: 2px solid rgba(0, 120, 215, 0.9);
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+  }
+}

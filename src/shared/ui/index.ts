@@ -12,3 +12,4 @@ export { HeaderPage } from "./HeaderPage";
 export { SideModal } from "./SideModal";
 export { FloatingMenu } from "./FloatingMenu";
 export { ScheduleTable } from "./ScheduleTable";
+export { ItemSeat } from "./ItemSeat";

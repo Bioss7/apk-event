@@ -18,7 +18,8 @@ type MenuItem =
   | "periods"
   | "scheduler"
   | "picture-hall"
-  | "devices";
+  | "devices"
+  | "tickets";
 
 interface MenuItemConfig {
   id: MenuItem;
@@ -34,6 +35,7 @@ const MENU_ITEMS: MenuItemConfig[] = [
   { id: "scheduler", iconName: "scheduler", label: "Планировщик" },
   { id: "picture-hall", iconName: "picture-hall", label: "Картинка зала" },
   { id: "devices", iconName: "devices", label: "Устройства" },
+  { id: "tickets", iconName: "tickets", label: "Билеты" },
 ];
 
 export const SidebarMenu: FC<SidebarMenuProps> = memo(
@@ -59,47 +61,49 @@ export const SidebarMenu: FC<SidebarMenuProps> = memo(
         className={`sidebar ${isHidden ? "hidden" : ""}`}
         aria-hidden={isHidden}
       >
-        <div className="sidebar-top">
-          <div className="sidebar-logo">
-            {isHidden ? <LogoHide /> : <Logo />}
+        <div className="sidebar-wrap">
+          <div className="sidebar-top">
+            <div className="sidebar-logo">
+              {isHidden ? <LogoHide /> : <Logo />}
+            </div>
+            <nav aria-label="Основное меню">
+              <ul>
+                {MENU_ITEMS.map((item) => (
+                  <li key={item.id}>
+                    <MenuButton
+                      iconName={item.iconName}
+                      label={item.label}
+                      isActive={activeTab === item.id}
+                      isHidden={isHidden}
+                      onClick={() => handleTabClick(item.id)}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
-          <nav aria-label="Основное меню">
+          <div className="sidebar-bottom">
             <ul>
-              {MENU_ITEMS.map((item) => (
-                <li key={item.id}>
-                  <MenuButton
-                    iconName={item.iconName}
-                    label={item.label}
-                    isActive={activeTab === item.id}
-                    isHidden={isHidden}
-                    onClick={() => handleTabClick(item.id)}
+              <li>
+                <button onClick={onLogout}>
+                  <Icon name="logout" size={24} />
+                  {!isHidden && <span>Выйти</span>}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={toggleMenu}
+                  aria-label={isHidden ? "Показать меню" : "Скрыть меню"}
+                >
+                  <Icon
+                    name={isHidden ? "hide-menu-right" : "hide-menu-left"}
+                    size={24}
                   />
-                </li>
-              ))}
+                  {!isHidden && <span>Скрыть меню</span>}
+                </button>
+              </li>
             </ul>
-          </nav>
-        </div>
-        <div className="sidebar-bottom">
-          <ul>
-            <li>
-              <button onClick={onLogout}>
-                <Icon name="logout" size={24} />
-                {!isHidden && <span>Выйти</span>}
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={toggleMenu}
-                aria-label={isHidden ? "Показать меню" : "Скрыть меню"}
-              >
-                <Icon
-                  name={isHidden ? "hide-menu-right" : "hide-menu-left"}
-                  size={24}
-                />
-                {!isHidden && <span>Скрыть меню</span>}
-              </button>
-            </li>
-          </ul>
+          </div>
         </div>
       </aside>
     );

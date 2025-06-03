@@ -12,10 +12,10 @@
   border-collapse: separate;
   border-spacing: 0;
   font-size: 14px;
-  background-color: white;
 
   th,
   td {
+    font-family: inherit;
     font-weight: 500;
     font-size: 18px;
     color: $color-black;
@@ -35,11 +35,11 @@
       &:first-child {
         text-align: left;
         padding: 0 20px;
-        width: 240px;
+        min-width: 240px;
       }
 
       &:last-child {
-        width: 80px;
+        min-width: 80px;
       }
 
       .date-header {
@@ -59,11 +59,11 @@
       }
 
       &.day-header {
-        width: 175px;
+        min-width: 175px;
       }
 
       &.weekend-header {
-        width: 175px;
+        min-width: 175px;
         background-color: $bg-primary;
 
         .day-name,
